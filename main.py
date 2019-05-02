@@ -1,6 +1,16 @@
 import os, random
 #import sklearn
 import numpy as np
+from math import inf as infinity
+
+def  minimax(board, depth, Player):
+
+	if player == "x":
+		best = [-1, -1, -infinity]
+	else:
+		best = [-1, -1, +infinity]
+
+
 
 
 def printBoard():
@@ -45,6 +55,11 @@ def checkWin(board):
 def askForInput():
     row = input("Enter Row: ")
     col = input("Enter Col: ")
+
+    while (int(row) > 2 or int(col) > 2):
+    	print("\nIndex out of range. Please try again.\n")
+    	row = input("Enter Row: ")
+    	col = input("Enter Col: ")
     board[int(row)][int(col)] = player
     moveList[row+col] = player
 
@@ -87,7 +102,7 @@ while not (win or moves==9):
     player = players[moves%2]
     
     if player == "o":
-        askForInput()
+        think()
     else:
         think()
 
